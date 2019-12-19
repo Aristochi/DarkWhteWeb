@@ -101,6 +101,98 @@ server.post('/user/register', function(req, res){
 
 
 
+/**
+ * API 2.7检测邮箱是否存在
+ * 接口地址：http://127.0.0.1:5050/user/check/email
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/user/check/email?email=ya@qq.com
+
+ */
+server.get('/user/check/email',function(req,res){
+    let email=req.url.split('=')[1]
+    let sql='SELECT uid FROM edu_user WHERE email=?'
+    pool.query(sql,[email],function(err,result)
+    {
+        if(err) throw err
+        if(result.length>0)
+        {
+            res.json({code:200,msg:"email already exists"})
+            return;
+        }
+        else
+        {
+            res.json({code:201,msg:"email non-exists "})
+        }
+    })
+
+
+
+})
+
+/**
+ * API 2.8检测手机是否存在
+ * 接口地址：http://127.0.0.1:5050/user/check/phone
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/user/check/phone?phone=18111111111
+ */
+server.get('/user/check/phone',function(req,res){
+    let phone=req.url.split('=')[1];
+    let sql='SELECT uid FROM edu_user WHERE phone=?'
+    pool.query(sql,[phone],function(err,result)
+    {
+        if(err) throw err
+        if(result.length>0)
+        {
+            res.json({code:200,msg:"phone already exists"})
+        
+        }
+        else
+        {
+            res.json({code:201,msg:"phone non-exists "})
+        }
+    })
+
+
+
+})
+
+
+/**
+ * API 2.9、检测用户名是否存在
+接口地址：http://127.0.0.1:5050/user/check/uname
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/user/check/uname?uname=ding
+
+ */
+server.get('/user/check/uname',function(req,res){
+    let uname=req.url.split('=')[1];
+    let sql='SELECT uid FROM edu_user WHERE uname=?'
+    pool.query(sql,[uname],function(err,result)
+    {
+        if(err) throw err
+        if(result.length>0)
+        {
+            res.json({code:200,msg:"uname already exists"})
+            
+        }
+        else
+        {
+            res.json({code:201,msg:"uname non-exists "})
+        }
+    })
+
+
+
+})
+
+
+
+
+
+
 
 /**
  * API 4.1 获取博客数据

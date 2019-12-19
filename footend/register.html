@@ -9,6 +9,7 @@
 	
 	<!-- core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -96,19 +97,32 @@
 						<div class="form-group">
 							<label for="uname" class="sr-only">用户名</label>
 							<input type="text" class="form-control" id="uname" placeholder="用户名" autocomplete="off">
-						</div>
+                            
+                                <span id="unameMsg" class="help-block alert-info">用户名长度在3~12位之间</span>
+                            
+                        </div>
+                       
 						<div class="form-group">
 							<label for="email" class="sr-only">邮箱</label>
 							<input type="email" class="form-control" id="email" placeholder="邮箱" autocomplete="off">
+                            <span id="emailMsg" class="help-block"></span>
                         </div>
+                      
                         <div class="form-group">
 							<label for="phone" class="sr-only">电话</label>
 							<input type="text" class="form-control" id="phone" placeholder="电话" autocomplete="off">
-						</div>
+                            <span id="phoneMsg" class="help-block"></span>
+                        </div>
+                        
 						<div class="form-group">
 							<label for="password" class="sr-only">密码</label>
 							<input type="password" class="form-control" id="upwd" placeholder="密码" autocomplete="off">
-						</div>
+                            <span id="upwdMsg" class="help-block alert-info">密码长度在6~12位之间</span>
+                        </div>
+                        
+                        
+                           
+                         
 						<div class="form-group">
 							<label for="remember"><input type="checkbox" id="remember">记住用户名</label>
 						</div>
