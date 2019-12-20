@@ -88,7 +88,6 @@ $('#btRegister').click(function(){
     let upwd = $('#upwd').val()
     let email = $('#email').val()
     let phone = $('#phone').val()
-    console.log(uname, upwd, email, phone)
     //验证表单输入的合法性
     if(uname.length<3){
       $('#unameMsg').html('用户名长度太短了').removeClass('alert-info').addClass('alert-danger')
@@ -104,7 +103,6 @@ $('#btRegister').click(function(){
       url:'http://127.0.0.1:5050/user/register',
       data: `uname=${uname}&upwd=${upwd}&email=${email}&phone=${phone}`,
       success: function(data, msg, xhr){
-        console.log('异步请求注册API成功：', data)
         if(data.code===200){
           //alert('注册成功')
           $('#modalRegisterSucc').modal()   //弹出模态对话框

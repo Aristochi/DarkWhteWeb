@@ -95,11 +95,11 @@
 						<h2>登录</h2>
 						<div class="form-group">
 							<label for="username" class="sr-only">用户名</label>
-							<input type="text" class="form-control" id="username" placeholder="用户名" autocomplete="off">
+							<input type="text" class="form-control" id="uname" placeholder="用户名" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+							<input type="password" class="form-control" id="upwd" placeholder="密码" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="remember"><input type="checkbox" id="remember">记住用户名</label>
@@ -108,7 +108,7 @@
 							<p>还没有注册? <a href="register.html">注册</a> | <a href="forget.html">忘记密码</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="登 录" class="btn btn-primary">
+							<input type="button" id="btnLogin" value="登 录" class="btn btn-primary">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
@@ -216,5 +216,68 @@
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 弹出式对话框：表示登录成功 -->
+<div id="modalLoginSucc" class="modal fade">   <!--半透明遮罩-->
+    <div class="modal-dialog modal-sm">   <!--对话框尺寸、位置-->
+      <div class="modal-content">   <!--边框、倒角、背景色-->
+        <!-- 头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">登录成功</h4>
+        </div>
+        <!-- 主体 -->
+        <div class="modal-body">
+          <p>正在为您跳转页面</p>
+        </div>
+        <!-- 尾部 -->
+        <div class="modal-footer">
+          <button class="btn btn-info" type="button" data-dismiss="modal">确定</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- 弹出式对话框：表示登录失败 -->
+  <div id="modalLoginErr" class="modal fade">   <!--半透明遮罩-->
+    <div class="modal-dialog modal-sm">   <!--对话框尺寸、位置-->
+      <div class="modal-content">   <!--边框、倒角、背景色-->
+        <!-- 头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">注册失败</h4>
+        </div>
+        <!-- 主体 -->
+        <div class="modal-body">
+          <p><b>用户登录失败！</b></p>
+          <p>服务器返回的错误消息：<span id="serverErrMsg"></span></p>
+        </div>
+        <!-- 尾部 -->
+        <div class="modal-footer">
+          <button class="btn btn-info" type="button" data-dismiss="modal">确定</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+
+
+
+
+
+
+
 </html>

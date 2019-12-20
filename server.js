@@ -99,6 +99,47 @@ server.post('/user/register', function(req, res){
 
 
 
+/**
+ * 2.1用户登录
+ * 接口地址：http://127.0.0.1:5050/user/login
+返回格式：JSON
+请求方式：POST
+请求示例：http://127.0.0.1:5050/user/login
+
+ */
+server.post('/user/login', function(req, res){
+    //读取客户端提交的请求数据
+    let n = req.body.uname
+    let p = req.body.upwd
+   
+    if(!n){
+        res.json( {code:401, msg: 'uname required'} ) 
+        return
+    }
+    if(!p){
+        res.json( {code:402, msg: 'upwd required'} )
+        return
+    }
+    //执行数据库操作——SELECT
+    let sql1 = 'SELECT uid FROM edu_user WHERE uname=? and upwd=?'
+    pool.query(sql1, [n, p], function(err, result){
+        if(err)throw err
+        if(result.length>0){
+            res.json({code:200, msg:'user login succ'})
+            return
+        }
+        else
+        {
+            res.json({code:403, msg:'uname or upwd err'})
+            return
+        }
+       
+    }) 
+    
+})
+
+
+
 
 
 /**
