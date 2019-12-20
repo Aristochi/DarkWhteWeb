@@ -1,91 +1,106 @@
-// function loadblog(num)
-// {
-//     $.ajax(
-//         {
-//             method:'GET',
-//             url:'http://127.0.0.1:5050/blog',
-//             success:function(pager)
-//             {
-//                 var html='';
-//                 for(var p of pager.data)
-//                 {
-//                     html+=`
-//                     <div id="${p.bid}" class="post-preview">
-//                     <a href="blog_detail.html">
-//                         <h2  id="title" class="post-title">
-//                             Science has not yet mastered prophecy
-//                         </h2>
-//                         <h3 id="abstract" class="post-subtitle">
-//                             We predict too much for the next year and yet far too little for the next ten.
-//                         </h3>
-//                     </a>
-//                     <p><span class="meta">Posted by <a id="author">Start Bootstrap</a></span> <span class="meta" id="post_time">On August 24, 2017</span>
-//                     </p> 
-//                  </div>
-//                 }
-               
-                
-//                 `
 
 
 
-
-
-
-
-//                 $(".pager").createPage({
-//                     pageCount:pager.pageCount,
-//                     currend:pager.num,
-//                     backFn:function (p) {
-//                         loadblog(p)
-//                       }
-//                 })
-
-//             }
-    
-    
-    
-    
-//         })
-// }
-
-
-
-
-$(window).load(function(){
-
-$.ajax(
-    {
-        method:'GET',
-        url:'http://127.0.0.1:5050/blog',
-        success:function(data)
+function loadData(currentID)
+{
+    //currentID当前第几页
+    $.ajax(
         {
-            console.log('异步请求成功')
-            let html=''
-            html+=`
-            <a href="blog_detail.html">
-            <h2 id="title" class="post-title">
-            "${data.title}"
-            </h2>
-            <h3 id="abstract" class="post-subtitle">
-            "${data.abstract}"
-            </h3>
-        </a>
-        <p><span class="meta">Posted by <a id="author">Start Bootstrap</a></span> <span class="meta" id="post_time">On August 24, 2017</span>
-        </p>  ` 
-         $('.blog_item1') .html(html)  
-                 
+            method:'GET',
+            url:'http://127.0.0.1:5050/blog',
+            data:`currentID=${currentID}`,
+            success:function(data)
+            {
+                console.log('异步请求成功')
+               paginatFactory(data,currentID);
+                     
+    
+            }
+    
+    
+    
+    
+        })
+}
 
+
+
+function paginatFactory(res,currentID)
+{
+
+
+
+
+    let html=''
+    if(res)
+    {
+        for(let i=0;i<res.length;i++)
+        {
+        html+=`
+        <div class="blog_item post-preview">
+        <a href="blog_detail?bid=${res[i].bid}">
+        <h2 id="title" class="post-title">
+        "${res[i].title}"
+        </h2>
+        <h3 id="abstract" class="post-subtitle">
+        "${res[i].abstract}"
+        </h3>
+    </a>
+    <p><span class="meta">Posted by <a id="author">"${res[i].uname}"</a></span> <span class="meta" class="post_time">"${res[i].post_time}"</span>
+    </p>
+    </div> 
+    <hr>  
+        `
         }
-
-
-
-
     }
-)
+    
+       
+$('#blog_list').html(html);
 
+    
+    let pre=1//上一页
+    if(currentID>1)
+    {
+        pre=currentID-1
+    }
+    
+    let prv=currentID+1//下一页
+    let frag=''
+    let pagehtml=''
+    pagehtml+=` <li data-pageid=${pre}><a><i class="fa fa-long-arrow-left"></i>上一页</a></li>`
+    let total=parseInt(currentID/5)
+    console.log(total+'total')
+    for(let i=total*5+1;i<=(total+1)*5;i++)
+    {
+        if(i==currentID)
+        {
+             frag='active'
+        }
+        else
+        {
+            frag=''
+        }
+        pagehtml+=`<li id="pli" data-pageid=${i} class="${frag}"><a>${i}</a></li>`
+    }
+    pagehtml+=` <li data-pageid=${prv} ><a><i class="fa fa-long-arrow-right"></i>下一页</a></li>`
+    $('.pagination').html(pagehtml)
+}
+//<a href="blog?currentID=${i}"></a>
 
+loadData(1);
 
+// $('#pli').click(function(){
+
+//     console.log($(this).currentID)
+// })
+
+$(document).on('click','.pagination li',function(){
+
+    var pageId = $(this).data('pageid');
+    console.log(pageId) 
+    loadData(pageId);
+
+    
 
 
 })

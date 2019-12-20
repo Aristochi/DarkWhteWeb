@@ -237,24 +237,32 @@ server.get('/user/check/uname',function(req,res){
 
 /**
  * API 4.1 获取博客数据
-接口地址：http://127.0.0.1:5050/blog
+接口地址：http://127.0.0.1:5050/blog/currentID
 返回格式：JSON
 请求方式：GET
-请求示例：http://127.0.0.1:5050/blog
+请求示例：http://127.0.0.1:5050/blog/currentID=1
  */
 server.get('/blog',function(req,res){
-    let sql='SELECT title,abstract FROM edu_blog'
-    pool.query(sql,function(err,result){
+    let currentID=req.url.split('=')[1]
+    console.log(currentID)
+    let list=currentID*4
+    console.log('list'+list)
+
+    let sql='SELECT bid, uname,title,post_time,abstract FROM edu_blog LIMIT ?,?'
+    pool.query(sql,[list-4,4],function(err,result){
         if(err)throw err
-        if(result.length>0)
+
+        if(result)
         {
-            res.json(result[0])
-            
+            res.json(result)
         }
         else
         {
             res.json({})
         }
+            
+        
+       
 
 
     })
