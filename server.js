@@ -244,10 +244,7 @@ server.get('/user/check/uname',function(req,res){
  */
 server.get('/blog',function(req,res){
     let currentID=req.url.split('=')[1]
-    console.log(currentID)
     let list=currentID*4
-    console.log('list'+list)
-
     let sql='SELECT bid, uname,title,post_time,abstract FROM edu_blog LIMIT ?,?'
     pool.query(sql,[list-4,4],function(err,result){
         if(err)throw err
@@ -265,6 +262,54 @@ server.get('/blog',function(req,res){
        
 
 
+    })
+
+})
+
+
+/**
+ * API 4.2获取博文详情
+ * 接口地址：http://127.0.0.1:5050/blog/detail
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/blog/detail?bid=1
+ */
+server.get('/blog/details',function(req,res){
+    let bid=req.url.split('=')[1];
+    let sql='SELECT title,abstract,uname,details,pic,post_time FROM edu_blog WHERE bid=?'
+    pool.query(sql,[bid],function(err,result){
+        if(err)throw err
+        res.json(result[0]);
+    
+    })
+
+
+
+
+})
+
+
+/**
+ *  * API 4.3 写文章
+ * 接口地址：http://127.0.0.1:5050/blog/write
+返回格式：JSON
+请求方式：POST
+请求示例：http://127.0.0.1:5050/blog/write
+ */
+server.post('/blog/write',function(req,res){
+
+    let author=req.body.uname;
+    let pic=req.body.pic;
+    let title=req.body.title;
+    let abstract=req.body.abstract;
+    let details=req.body.detail;
+    let post_time=req.body.post_time;
+    console.log(author)
+    let sql='INSERT INTO edu_blog(uname, title, pic, details,abstract,post_time) VALUES(?, ?, ?, ?,?,?)'
+
+    pool.query(sql,[author,title,pic,details,abstract,post_time],function(err,result){
+        if(err)throw err
+        res.json({code:200,msg:'submit succ'})
     })
 
 })

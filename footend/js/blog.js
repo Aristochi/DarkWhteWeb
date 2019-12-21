@@ -11,10 +11,7 @@ function loadData(currentID)
             data:`currentID=${currentID}`,
             success:function(data)
             {
-                console.log('异步请求成功')
-               paginatFactory(data,currentID);
-                     
-    
+               paginatFactory(data,currentID);                           
             }
     
     
@@ -38,7 +35,7 @@ function paginatFactory(res,currentID)
         {
         html+=`
         <div class="blog_item post-preview">
-        <a href="blog_detail?bid=${res[i].bid}">
+        <a href="blog_detail.html?bid=${res[i].bid}">
         <h2 id="title" class="post-title">
         "${res[i].title}"
         </h2>
@@ -46,7 +43,7 @@ function paginatFactory(res,currentID)
         "${res[i].abstract}"
         </h3>
     </a>
-    <p><span class="meta">Posted by <a id="author">"${res[i].uname}"</a></span> <span class="meta" class="post_time">"${res[i].post_time}"</span>
+    <p><span class="meta"><a id="author">作者："${res[i].uname}"</a></span>&nbsp;&nbsp; &nbsp;<span class="meta" class="post_time">发表时间："${res[i].post_time}"</span>
     </p>
     </div> 
     <hr>  
@@ -69,8 +66,13 @@ $('#blog_list').html(html);
     let pagehtml=''
     pagehtml+=` <li data-pageid=${pre}><a><i class="fa fa-long-arrow-left"></i>上一页</a></li>`
     let total=parseInt(currentID/5)
-    console.log(total+'total')
-    for(let i=total*5+1;i<=(total+1)*5;i++)
+    
+    let i=total*5
+    if(i==0)
+    {
+        i=1
+    }
+    for( i;i<=(total+1)*5;i++)
     {
         if(i==currentID)
         {
@@ -85,14 +87,9 @@ $('#blog_list').html(html);
     pagehtml+=` <li data-pageid=${prv} ><a><i class="fa fa-long-arrow-right"></i>下一页</a></li>`
     $('.pagination').html(pagehtml)
 }
-//<a href="blog?currentID=${i}"></a>
 
 loadData(1);
 
-// $('#pli').click(function(){
-
-//     console.log($(this).currentID)
-// })
 
 $(document).on('click','.pagination li',function(){
 
