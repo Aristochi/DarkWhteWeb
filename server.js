@@ -20,6 +20,9 @@ let pool = mysql.createPool({
 /*******************************************/
 //导入第三方模块：express，创建基于Node.js的Web服务器
 let  express = require('express')
+let cookieParser=require('cookie-parser')
+let session=require('express-session')
+
 
 //调用第三方模块提供的功能
 let server = express()
@@ -43,9 +46,28 @@ server.use(express.urlencoded({
 }))
 //自定义中间件：允许指定客户端的跨域访问
 server.use(function(req, res, next){
-    res.set('Access-Control-Allow-Origin',  '*') //当前服务器允许来自任何客户端的跨域访问
+    res.set('Access-Control-Allow-Origin',  'http://127.0.0.1:5000') //当前服务器允许来自任何客户端的跨域访问
+    res.set("Access-Control-Allow-Headers", "X-Requested-With");
+    res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.set("X-Powered-By",' 3.2.1');
+    res.set("Content-Type", "application/json;charset=utf-8");
+    res.header("Access-Control-Allow-Credentials", true);
+   
     next() //放行，让后续的请求处理方法继续处理
 })
+
+let name="edumall"
+server.use(cookieParser());
+server.use(session({
+    name:name,
+    secret: "12345",
+    resave: false,
+    rolling:true,
+    saveUninitialized: true,
+    cookie: {maxAge: 24*60*60*1000}
+}));
+
+
 
 /**
  * 2.1用户注册
@@ -125,6 +147,10 @@ server.post('/user/login', function(req, res){
     pool.query(sql1, [n, p], function(err, result){
         if(err)throw err
         if(result.length>0){
+            req.session.uname=n;
+            req.session.isLogin=true;
+            console.log("login"+req.session.uname)
+            console.log(cookieParser)
             res.json({code:200, msg:'user login succ'})
             return
         }
@@ -217,11 +243,12 @@ server.get('/user/check/uname',function(req,res){
         if(result.length>0)
         {
             res.json({code:200,msg:"uname already exists"})
-            
+            return
         }
         else
         {
             res.json({code:201,msg:"uname non-exists "})
+            return
         }
     })
 
@@ -230,7 +257,53 @@ server.get('/user/check/uname',function(req,res){
 })
 
 
+/**
+ * 2.10、退出登录
+接口地址：http://127.0.0.1:5050/user/logout
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/user/logout
 
+JSON返回示例
+{ "code":200, "msg":"logout succ" }
+
+ */
+server.get('/user/logout',function(req,res){
+
+//    req.session.destroy(function(err){
+//     if(err)throw err
+    
+//      res.clearCookie(name); 
+//      res.redirect('/');
+//      res.json({"code":200,"msg":"logout succ"})
+//      return
+//    })
+    req.session.uname=''
+    req.session.isLogin=false
+    res.json({"code":200,"msg":"logout succ"})
+    return
+})
+
+
+
+/**
+ * 2.11、获取当前用户会话信息
+接口地址：http://127.0.0.1:5050/user/sessiondata
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/user/sessiondata
+
+JSON返回示例
+{ "uid":"1", "uname":"dingding" }
+
+ */
+server.get('/user/sessiondata',function(req,res){
+   
+   
+    // res.send({"uname":req.session.uname,"isLogin":req.session.isLogin})
+    res.json({"uname":req.session.uname,"isLogin":req.session.isLogin})
+    return
+})
 
 
 
@@ -252,10 +325,12 @@ server.get('/blog',function(req,res){
         if(result)
         {
             res.json(result)
+            return
         }
         else
         {
             res.json({})
+            return
         }
             
         
@@ -280,7 +355,7 @@ server.get('/blog/details',function(req,res){
     pool.query(sql,[bid],function(err,result){
         if(err)throw err
         res.json(result[0]);
-    
+        return
     })
 
 
@@ -311,7 +386,7 @@ server.post('/blog/write',function(req,res){
         if(err)throw err
         res.json({code:200,msg:'submit succ'})
     })
-
+    return
 })
 
 

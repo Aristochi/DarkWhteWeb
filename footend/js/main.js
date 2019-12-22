@@ -5,7 +5,10 @@
 
 
 
-jQuery(function($) {'use strict',
+jQuery(function($) {
+	'use strict',
+
+
 
 	//#main-slider
 	$(function(){
@@ -28,7 +31,8 @@ jQuery(function($) {'use strict',
 	new WOW().init();
 
 	// portfolio filter
-	$(window).load(function(){'use strict';
+	$(window).load(function(){
+		'use strict';
 		var $portfolio_selectors = $('.portfolio-filter >li>a');
 		var $portfolio = $('.portfolio-items');
 		$portfolio.isotope({
@@ -43,6 +47,10 @@ jQuery(function($) {'use strict',
 			$portfolio.isotope({ filter: selector });
 			return false;
 		});
+
+	
+
+
 	});
 
 	// Contact form
