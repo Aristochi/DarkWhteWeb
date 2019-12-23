@@ -32,7 +32,7 @@ jQuery(function($) {
 
 	// portfolio filter
 	$(window).load(function(){
-		
+
 		$.ajax({
 			method:'GET',
 			url:'http://127.0.0.1:5050/user/sessiondata',
@@ -81,6 +81,7 @@ jQuery(function($) {
 									 <li><a href="blog.html">博客</a></li>
 									<li><a href="blog_write.html">写博客</a></li>
 									<li><a href="chat.html">聊天</a></li>
+									<li><a href="contact-us.html">联系我们</a></li>
 								</ul>
 							</li>
 
@@ -139,6 +140,7 @@ jQuery(function($) {
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu">
 									 <li><a href="blog.html">博客</a></li>
+									 <li><a href="contact-us.html">联系我们</a></li>
 									<li><a href="login.html">登录查看更多哦~</a></li>
 								</ul>
 							</li>
@@ -280,13 +282,13 @@ jQuery(function($) {
 			<div class="widget">
 				<h3>合作伙伴</h3>
 				<ul>
-					<li><a href="404.html">达内科技</a></li>
+					<li><a href="http://www.tedu.cn/">达内科技</a></li>
 					<li><a href="http://ss.scnu.edu.cn/">华南师大软院</a></li>
-					<li><a href="404.html">张晓基</a></li>
-					<li><a href="404.html">郑柏涛</a></li>
-					<li><a href="404.html">黄承书</a></li>
-					<li><a href="404.html">杨满</a></li>
-					<li><a href="404.html">罗艳芬</a></li>
+					<li><a href="http://www.scholat.com/xjzhang">张晓基</a></li>
+					<li><a href="http://www.scholat.com/zhengbaitao">郑柏涛</a></li>
+					<li><a href="http://www.scholat.com/cshuang">黄承书</a></li>
+					<li><a href="http://www.scholat.com/yman">杨满</a></li>
+					<li><a href="http://www.scholat.com/luoyanfen">罗艳芬</a></li>
 				</ul>
 			</div>    
 		</div>
@@ -341,6 +343,7 @@ $(document).on('click','#logout',function()
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
 								 <li><a href="blog.html">博客</a></li>
+								 <li><a href="contact-us.html">联系我们</a></li>
 								 <li><a href="login.html">登录查看更多哦~</a></li>
 							</ul>
 						</li>
