@@ -138,8 +138,7 @@ jQuery(function($) {
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu">
 									 <li><a href="blog.html">博客</a></li>
-									<li><a href="blog_write.html"></a></li>
-									<li><a href="chat.html"></a></li>
+									<li><a href="login.html">登录查看更多哦~</a></li>
 								</ul>
 							</li>
 								<li class="dropdown">
@@ -194,8 +193,6 @@ jQuery(function($) {
 			return false;
 		});
 
-	
-
 
 	});
 
@@ -229,6 +226,73 @@ jQuery(function($) {
 		social_tools: false
 	});	
 
+	let html4=''
+	html4+=`
+	
+	<div class="row">
+		<div class="col-md-3 col-sm-6">
+			<div class="widget">
+				<h3>公司团队</h3>
+				<ul>
+					<li><a href="about-us.html">关于我们</a></li>
+					<li><a href="recruit.html">招聘信息</a></li>
+					<li><a href="404.html">认识团队</a></li>
+					<li><a href="404.html">版权</a></li>
+					<li><a href="404.html">使用条款</a></li>
+					<li><a href="404.html">隐私政策</a></li>
+					<li><a href="contact-us.html">联系我们</a></li>
+				</ul>
+			</div>    
+		</div>
+
+		<div class="col-md-3 col-sm-6">
+			<div class="widget">
+				<h3>服务支持</h3>
+				<ul>
+					<li><a href="404.html">常见问题</a></li>
+					<li><a href="blog.html">博客</a></li>
+					<li><a href="404.html">课程</a></li>
+					<li><a href="404.html">文献资料</a></li>
+					<li><a href="404.html">退款政策</a></li>
+					<li><a href="404.html">票务系统</a></li>
+					<li><a href="404.html">计费说明</a></li>
+				</ul>
+			</div>    
+		</div>
+
+		<div class="col-md-3 col-sm-6">
+			<div class="widget">
+				<h3>培养精英</h3>
+				<ul>
+					<li><a href="services.html">服务特色</a></li>
+					<li><a href="lang.html">编程语言</a></li>
+					<li><a href="mobile.html">移动开发</a></li>
+					<li><a href="ai.html">人工智能</a></li>
+					<li><a href="404.html">Web设计</a></li>
+					<li><a href="404.html">系统架构</a></li>
+					<li><a href="404.html">运营维护</a></li>
+				</ul>
+			</div>    
+		</div>
+
+		<div class="col-md-3 col-sm-6">
+			<div class="widget">
+				<h3>合作伙伴</h3>
+				<ul>
+					<li><a href="404.html">达内科技</a></li>
+					<li><a href="http://ss.scnu.edu.cn/">华南师大软院</a></li>
+					<li><a href="404.html">张晓基</a></li>
+					<li><a href="404.html">郑柏涛</a></li>
+					<li><a href="404.html">黄承书</a></li>
+					<li><a href="404.html">杨满</a></li>
+					<li><a href="404.html">罗艳芬</a></li>
+				</ul>
+			</div>    
+		</div>
+	</div>`
+
+
+$('#bottom2').html(html4)
 	
 $(document).on('click','#logout',function()
 {
@@ -276,8 +340,7 @@ $(document).on('click','#logout',function()
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu">
 								 <li><a href="blog.html">博客</a></li>
-								<li><a href="blog_write.html"></a></li>
-								<li><a href="chat.html"></a></li>
+								 <li><a href="login.html">登录查看更多哦~</a></li>
 							</ul>
 						</li>
                             <li class="dropdown">

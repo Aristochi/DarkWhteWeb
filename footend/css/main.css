@@ -270,10 +270,11 @@ input.search-form:hover {
   margin:0;
 }
 
+/* 导航栏颜色 */
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #151515;
+  background: black;
   padding: 15px 0;
   padding-bottom: 0;
 }
@@ -2151,9 +2152,7 @@ ul.faq li > div h3 {
   font-size: 14px;
 }
 
-.post-tags {
 
-}
 
 .blog .blog-item .entry-meta {
   border-radius: 5px;
@@ -2419,9 +2418,7 @@ ul.sidebar-gallery {
   z-index: 99999;
 }
 
-.post_reply_comments h2 a{
- 
-}
+
 
 .message_heading {
   margin-bottom: 50px;
@@ -2507,6 +2504,8 @@ shortcodes page css
   margin-bottom: 0;
 }
 
+
+/* 底部颜色 */
 #footer {
   padding-top: 30px;
   padding-bottom: 30px;
