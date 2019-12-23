@@ -64,7 +64,7 @@ server.use(session({
     resave: false,
     rolling:true,
     saveUninitialized: true,
-    cookie: {maxAge: 24*60*60*1000}
+    cookie: {maxAge: 60*60*1000}
 }));
 
 
