@@ -2,25 +2,30 @@
     $('#uname').blur(function(){
       let uname = $(this).val()
       if(uname.length<3){
+        
         $('#unameMsg').html('用户名太短了').removeClass('alert-info').addClass('alert-danger')
       }
       //如果输入的用户名格式合法，则继续进行服务器端验证
-      $.ajax({
-        method: 'GET',
-        url: 'http://127.0.0.1:5050/user/check/uname',
-        data:`uanme=${uname}`,
-        success: function(data){  
-            if(data.code==200)
-            {
-                $('#unameMsg').html('用户名已被使用').removeClass('alert-info').addClass('alert-danger')
-            }
-            else
-            {
-                $('#unameMsg').html('用户名可使用').removeClass('alert-danger').addClass('alert-info')
-            }
-           
-        }
-      })
+      if(uname.length>=3)
+      {
+        $.ajax({
+          method: 'GET',
+          url: 'http://127.0.0.1:5050/user/check/uname',
+          data:`uanme=${uname}`,
+          success: function(data){  
+              if(data.code==200)
+              {
+                  $('#unameMsg').html('用户名已被使用').removeClass('alert-info').addClass('alert-danger')
+              }
+              else 
+              {
+                  $('#unameMsg').html('用户名可使用').removeClass('alert-danger').addClass('alert-info')
+              }
+             
+          }
+        })
+      }
+     
     })
     $('#upwd').blur(function(){
 
@@ -39,28 +44,39 @@
     $('#email').blur(function(){
 
         let email = $(this).val()
-        //进行服务器端验证邮箱
-        $.ajax({
-          method: 'GET',
-          url: 'http://127.0.0.1:5050/user/check/email',
-          data:`email=${email}`,
-          // data:{email:email},
-          success: function(data){  
-              if(data.code==200)
-              {
-                  $('#emailMsg').html('此邮箱已注册').removeClass('alert-info').addClass('alert-danger')
-              }
-              else
-              {
-                  $('#emailMsg').html('此邮箱可注册').removeClass('alert-danger').addClass('alert-info')
-              }
-             
-          }
-        })
+        if(email.length>0)
+        {
+           //进行服务器端验证邮箱
+          $.ajax({
+            method: 'GET',
+            url: 'http://127.0.0.1:5050/user/check/email',
+            data:`email=${email}`,
+            // data:{email:email},
+            success: function(data){  
+                if(data.code==200)
+                {
+                    $('#emailMsg').html('此邮箱已注册').removeClass('alert-info').addClass('alert-danger')
+                }
+                else
+                {
+                    $('#emailMsg').html('此邮箱可注册').removeClass('alert-danger').addClass('alert-info')
+                }
+               
+            }
+          })
+        }
+       
+     
       })
       $('#phone').blur(function(){
         let phone = $(this).val()
+        if(phone.length<11)
+        {
+          $('#phoneMsg').html('此号码格式错误').removeClass('alert-info').addClass('alert-danger')
+        }
+        if(phone.length==11)
         //进行服务器端验证号码
+      {
         $.ajax({
           method: 'GET',
           url: 'http://127.0.0.1:5050/user/check/phone?phone',
@@ -77,6 +93,7 @@
              
           }
         })
+      }
       })
 
 

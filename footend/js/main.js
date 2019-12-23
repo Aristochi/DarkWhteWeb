@@ -32,6 +32,7 @@ jQuery(function($) {
 
 	// portfolio filter
 	$(window).load(function(){
+		
 		$.ajax({
 			method:'GET',
 			url:'http://127.0.0.1:5050/user/sessiondata',
@@ -46,7 +47,7 @@ jQuery(function($) {
 				let html1=''	
 				if(isLogin)
 				{
-					html1+=`               <nav class="navbar navbar-inverse" role="banner">
+					html1+=`    <nav class="navbar navbar-inverse" role="banner">
 					<div class="container">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

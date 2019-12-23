@@ -46,7 +46,7 @@ server.use(express.urlencoded({
 }))
 //自定义中间件：允许指定客户端的跨域访问
 server.use(function(req, res, next){
-    res.set('Access-Control-Allow-Origin',  'http://127.0.0.1:5000') //当前服务器允许来自任何客户端的跨域访问
+    res.set('Access-Control-Allow-Origin',  'http://10.253.25.29:5000') //当前服务器允许来自任何客户端的跨域访问
     res.set("Access-Control-Allow-Headers", "X-Requested-With");
     res.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.set("X-Powered-By",' 3.2.1');
