@@ -40,18 +40,18 @@
 }
 .chat_main {
     margin: 7vh auto; 
-    border: 2px #eee solid; 
-    border-radius: 10px;  
-    box-shadow: 3px 5px 9px #ccc;
-    background-color: rgba(255, 255, 255, 1);
+    border: 1px rgba(0,0,0,0.1) solid; 
+    /* 圆角 */
+    /* border-radius: 10px;   */
+    box-shadow: 5px 5px 10px black;
+    background-color: rgba(255, 255, 255, 0.8);
     position: relative;
     left: 0;
-    background: url('./../images/chat/bg1.jpg');
+    /* background: url('./../images/chat/bg3.jpg'); */
 }
 .chat_header {
     /* background: papayawhip; */
     height: 85px;
-    border-bottom: 2px solid #eee;
     font-size: 23px;
     padding-left: 10px;
     padding-top: 10px;
@@ -69,7 +69,7 @@
 } */
 .conversation {
     /* width: 400px; */
-    border-right: 2px #eee solid;
+    border-right: 1px #eee solid;
     /* background: oldlace; */
    
 }
@@ -224,14 +224,14 @@ p.system span {
     }
 }
 .edit #file {
-    width: 32.36px;
-    height: 29px;
+    width: 50px;
+    height: 50px;
     opacity: 0;
     z-index: 5;
 }
 .edit #img {
     z-index: 0;
-    margin-left: -43px;
+    margin-left: -20px;
 }
 #color {
     width: 25px;
@@ -395,7 +395,7 @@ button.rBtn {
     margin-bottom: 5px;
 }
 .contacts li img {
-    width: 100%;
+    width: 45.5px;
     height: 45.5px;
 }
 .contacts li>span {
@@ -419,6 +419,9 @@ button.rBtn {
 @media all and (max-width: 767px) {
     .contacts {
         width: 0%;
+    }
+    #users{
+        display: none;
     }
     .contacts h1{
         display: none;

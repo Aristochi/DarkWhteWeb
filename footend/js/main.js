@@ -66,7 +66,7 @@ jQuery(function($) {
 								<li><a href="portfolio.html">学生园地</a></li>
 								<li><a href="services.html">服务</a></li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">课程分类 <i class="fa fa-angle-down"></i></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">分类 <i class="fa fa-angle-down"></i></a>
 									<ul class="dropdown-menu">
 										 <li><a href="lang.html">编程语言</a></li>
 										<li><a href="mobile.html">移动开发</a></li>
@@ -75,7 +75,7 @@ jQuery(function($) {
 								</li>
 
 								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">沟通交流<i class="fa fa-angle-down"></i></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu">
 									 <li><a href="blog.html">博客</a></li>
 									<li><a href="blog_write.html">写博客</a></li>
@@ -127,7 +127,7 @@ jQuery(function($) {
 								<li><a href="portfolio.html">学生园地</a></li>
 								<li><a href="services.html">服务</a></li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">课程分类 <i class="fa fa-angle-down"></i></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">分类 <i class="fa fa-angle-down"></i></a>
 									<ul class="dropdown-menu">
 										 <li><a href="lang.html">编程语言</a></li>
 										<li><a href="mobile.html">移动开发</a></li>
@@ -135,11 +135,11 @@ jQuery(function($) {
 									</ul>
 								</li>
 								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">沟通交流<i class="fa fa-angle-down"></i></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu">
 									 <li><a href="blog.html">博客</a></li>
-									<li><a href="blog_write.html">写博客</a></li>
-									<li><a href="chat.html">聊天</a></li>
+									<li><a href="blog_write.html"></a></li>
+									<li><a href="chat.html"></a></li>
 								</ul>
 							</li>
 								<li class="dropdown">
@@ -265,14 +265,21 @@ $(document).on('click','#logout',function()
                             <li><a href="portfolio.html">学生园地</a></li>
                             <li><a href="services.html">服务</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">课程分类 <i class="fa fa-angle-down"></i></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">分类 <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                      <li><a href="lang.html">编程语言</a></li>
                                     <li><a href="mobile.html">移动开发</a></li>
                                     <li><a href="ai.html">人工智能</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">论坛</a></li> 
+							<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">交流<i class="fa fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								 <li><a href="blog.html">博客</a></li>
+								<li><a href="blog_write.html"></a></li>
+								<li><a href="chat.html"></a></li>
+							</ul>
+						</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">

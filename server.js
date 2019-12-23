@@ -317,9 +317,9 @@ server.get('/user/sessiondata',function(req,res){
  */
 server.get('/blog',function(req,res){
     let currentID=req.url.split('=')[1]
-    let list=currentID*4
+    let list=currentID*6
     let sql='SELECT bid, uname,title,post_time,abstract FROM edu_blog LIMIT ?,?'
-    pool.query(sql,[list-4,4],function(err,result){
+    pool.query(sql,[list-6,6],function(err,result){
         if(err)throw err
 
         if(result)
@@ -379,7 +379,7 @@ server.post('/blog/write',function(req,res){
     let abstract=req.body.abstract;
     let details=req.body.detail;
     let post_time=req.body.post_time;
-    console.log(author)
+
     let sql='INSERT INTO edu_blog(uname, title, pic, details,abstract,post_time) VALUES(?, ?, ?, ?,?,?)'
 
     pool.query(sql,[author,title,pic,details,abstract,post_time],function(err,result){
@@ -435,7 +435,7 @@ io.on('connection', (socket)=> {
                 status: '进入'
             });
             io.emit('disUser', usersInfo);
-            console.log(users.length + ' user connect.');
+        
         }
     });
 
@@ -488,7 +488,7 @@ io.on('connection', (socket)=> {
             });
             
             io.emit('disUser', usersInfo);  // 重新渲染
-            console.log('a user left.');
+          
         }
     });
 });

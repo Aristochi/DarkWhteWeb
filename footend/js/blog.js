@@ -29,7 +29,7 @@ function paginatFactory(res,currentID)
 
 
 
-
+    let html3=''
     let html=''
     if(res)
     {
@@ -50,12 +50,19 @@ function paginatFactory(res,currentID)
     </div> 
     <hr>  
         `
+        html3+=` 
+        <a href="blog_detail.html?bid=${res[i].bid}">
+        <h3 id="title" class="post-title">
+        "${res[i].title}"
+        </h3>
+        <hr>
+    </a>`
         }
     }
     
        
 $('#blog_list').html(html);
-
+$('#recent_hot').html(html3);
     
     let pre=1//上一页
     if(currentID>1)
