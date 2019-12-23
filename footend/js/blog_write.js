@@ -1,32 +1,70 @@
 $('#btnSubmit').click(function(){
-    let uname='test'
-    let time=getTime();
-    let title=$('#title').val()
-    let abstract=$('#abstract').val()
-    let detail=$('#detail').val()
-    // let detail=document.getElementById('detail').innerHTML
-    console.log(detail)
-    // let pic=$('#pic').val()
-    let pic=null
+    let uname=''
+    let isLogin=false
     $.ajax({
-        method:'POST',
-        url:'http://127.0.0.1:5050/blog/write',
-        data:`uname=${uname}&title=${title}&abstract=${abstract}&detail=${detail}&pic=${pic}&post_time=${time}`,
+        method:'GET',
+        url:'http://127.0.0.1:5050/user/sessiondata',
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
         success:function(data)
         {
-            if(data.code==200)
+            
+            uname=data.uname;
+            isLogin=data.isLogin;
+            if(isLogin)
             {
-                $('#modalSubmitSucc').modal()
+                let time=getTime();
+                let title=$('#title').val()
+                let abstract=$('#abstract').val()
+                let detail=$('#detail').val()
+                // let pic=$('#pic').val()
+                let pic=null
+                $.ajax({
+                    method:'POST',
+                    url:'http://127.0.0.1:5050/blog/write',
+                    data:`uname=${uname}&title=${title}&abstract=${abstract}&detail=${detail}&pic=${pic}&post_time=${time}`,
+                    success:function(data)
+                    {
+                        if(data.code==200)
+                        {
+                            $('#modalSubmitSucc').modal()
+                        }
+                        else
+                        {
+                            $('#serverErrMsg').html("请检查文章内容是否符合规范！")
+                           $('#modalSubmitErr').modal()
+                        }
+                    }
+            
+            
+                })
+            
+                
             }
             else
             {
-               $('#modalSubmitErr').modal()
+                $('#serverErrMsg').html("请登录后发表文章！")
+                $('#modalSubmitErr').modal()
             }
-        }
-
-
+        
+        },
+       
+        error: function(xhr, err){
+            console.log('异步session失败：')
+            console.log(xhr)
+            console.log(err)
+          }
+          
+    
     })
 
+   
+    
+   
+
+ 
 
 
 })
@@ -60,3 +98,7 @@ function getTime(){     	//获取时间
     var time=year+'/'+month+'/'+day+'/'+hour+':'+minute+':'+second;
     return time;
 }
+
+
+
+

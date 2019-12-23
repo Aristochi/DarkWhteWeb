@@ -294,7 +294,7 @@ server.get('/user/logout',function(req,res){
 请求示例：http://127.0.0.1:5050/user/sessiondata
 
 JSON返回示例
-{ "uid":"1", "uname":"dingding" }
+{  "uname":"dingding","isLogin":false }
 
  */
 server.get('/user/sessiondata',function(req,res){
