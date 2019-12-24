@@ -67,8 +67,193 @@ server.use(session({
     cookie: {maxAge: 60*60*1000}
 }));
 
+/**
+ * 1.1商品列表
+ * 接口地址：接口地址：http://127.0.0.1:5050/lang
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/lang
+ */
+server.get('/lang',function(req,res){
+    let output = {
+        carouselItems: [],
+        productItems: [],
+    }
+    let loadedCount = 0 
+    //执行数据库查询1：轮播广告条目
+    let sql1 = 'SELECT * FROM edu_index_carousel'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+        if(loadedCount===2){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    let sql2='SELECT * FROM edu_lesson WHERE category=1'
+    pool.query(sql2,function(err,result){
+        if(err)throw err
+        output.productItems = result
+        loadedCount++
+        if(loadedCount===2)
+        {
+            res.json(output)
+        }
+        
+    })
+})
+server.get('/mobile',function(req,res){
+    let output = {
+        carouselItems: [],
+        productItems: [],
+    }
+    let loadedCount = 0 
+    //执行数据库查询1：轮播广告条目
+    let sql1 = 'SELECT * FROM edu_index_carousel'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+        if(loadedCount===2){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    let sql2='SELECT * FROM edu_lesson WHERE category=2'
+    pool.query(sql2,function(err,result){
+        if(err)throw err
+        output.productItems = result
+        loadedCount++
+        if(loadedCount===2)
+        {
+            res.json(output)
+        }
+        
+    })
+})
+server.get('/ai',function(req,res){
+    let output = {
+        carouselItems: [],
+        productItems: [],
+    }
+    let loadedCount = 0 
+    //执行数据库查询1：轮播广告条目
+    let sql1 = 'SELECT * FROM edu_index_carousel'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+        if(loadedCount===2){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    let sql2='SELECT * FROM edu_lesson WHERE category=3'
+    pool.query(sql2,function(err,result){
+        if(err)throw err
+        output.productItems = result
+        loadedCount++
+        if(loadedCount===2)
+        {
+            res.json(output)
+        }
+        
+    })
+})
 
+/**
+ * 1.2商品详情
+ * 接口地址：http://127.0.0.1:5050/footend/single
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/footend/single?lid=2
+ */
+server.get('/footend/single',function(req,res){
+    let lid = req.url.split('=')[1];
+    if(!lid){
+        res.json({})
+        return
+    }
+    let sql = 'SELECT * FROM edu_lesson WHERE lid =?'
+    pool.query(sql,[lid],function(err,result){
+        if(err)throw err
+        if(result.length>0){
+            res.json(result)
+        }
+    })
+})
 
+/**
+ * 1.3删除商品
+ * 接口地址：http://127.0.0.1:5050/footend/cart/delete
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/footend/cart/delete
+ */
+server.get('/cart/delete',function(req,res){
+    // let cid = req.body.cid
+    let cid = req.url.split('=')[1];
+    let sql = 'DELETE FROM edu_cart WHERE cid=?'
+    pool.query(sql,[cid],function(err,result){
+        console.log(result);
+        if(err)throw err
+        if(result.length>0){
+            res.json({code:200,msg:'delete succ'})
+        }
+    })
+})
+
+/**
+ * API 1.5、首页数据
+ */
+server.get('/index', function(req, res){
+    let output = {
+        carouselItems: [],
+        langItems: [],
+        mobileItems: [],
+        aiItems: [],
+    }
+    let loadedCount = 0    //有几类数据已经加载完成——如果等于4说明四类数据全部加载完成
+
+    //执行数据库查询1：轮播广告条目
+    let sql1 = 'SELECT * FROM edu_index_carousel'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+        if(loadedCount===4){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    //执行数据库查询2：编程语言
+    let sql2 = 'SELECT lid,title,details,pic,href FROM edu_index_lesson WHERE seq_lang>0 ORDER BY seq_lang LIMIT 6'
+    pool.query(sql2, function(err, result){
+        if(err)throw err
+        output.langItems = result
+        loadedCount++
+        if(loadedCount===4){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    //执行数据库查询3：移动开发
+    let sql3 = 'SELECT lid,title,details,pic,href FROM edu_index_lesson WHERE seq_mobile>0 ORDER BY seq_mobile LIMIT 6'
+    pool.query(sql3, function(err, result){
+        if(err)throw err
+        output.mobileItems = result
+        loadedCount++
+        if(loadedCount===4){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+    //执行数据库查询4：人工智能
+    let sql4 = 'SELECT lid,title,details,pic,href FROM edu_index_lesson WHERE seq_ai>0 ORDER BY seq_ai LIMIT 6'
+    pool.query(sql4, function(err, result){
+        if(err)throw err
+        output.aiItems = result
+        loadedCount++
+        if(loadedCount===4){  //所有的四类数据全部加载完成
+            res.json(output)
+        }
+    })
+})
 /**
  * 2.1用户注册
  * 接口地址：http://127.0.0.1:5050/user/register
@@ -305,8 +490,70 @@ server.get('/user/sessiondata',function(req,res){
     return
 })
 
+/**
+ * API3.1 联系我们
+接口地址：http://127.0.0.1:5050/contact
+返回格式：JSON
+请求方式：POST
+请求示例：http://127.0.0.1:5050/contact
+ */
+server.post('/contact',function(req,res){
+
+    let uname=req.body.name
+    let email=req.body.email
+    let phone=req.body.phone
+    let company=req.body.company
+    let subject=req.body.subject
+    let message=req.body.message
+
+    let sql="INSERT INTO edu_contact(uname, email, phone, company,subject,message) VALUES(?,?,?,?,?,?)"
+
+    pool.query(sql,[uname,email,phone,company,subject,message],function(err,result){
+
+        if(err)throw err
+
+        res.json({"code":100,"msg":"contact succ"})
+
+    })
 
 
+})
+
+/**
+ * 3.2 添加商品至购物车
+ * 接口地址：http://127.0.0.1:5050/single
+返回格式：JSON
+请求方式：POST
+请求示例：http://127.0.0.1:5050/single
+ */
+server.post('/single',function(req,res){
+    let uname=req.body.uname;
+    let lesson_id=req.body.lesson_id;
+    let teacher_id=req.body.teacher_id;
+    let price=req.body.price;
+    let sql='INSERT INTO edu_cart(uname,lesson_id,teacher_id,price) VALUES(?,?,?,?)'
+    pool.query(sql,[uname,lesson_id,teacher_id,price],function(err,result){
+        if(err)throw err
+        res.json({code:200,msg:'submit succ'})
+    })
+})
+
+/**
+ * 3.3 购物车项列表
+ * 接口地址：http://127.0.0.1:5050/cart
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/cart
+ */
+server.get('/cart',function(req,res){
+    let sql='SELECT * FROM edu_lesson,edu_cart,edu_teacher WHERE edu_lesson.lid=edu_cart.lesson_id AND edu_teacher.tid=edu_cart.teacher_id'
+    pool.query(sql,function(err,result){
+        if(err)throw err
+        if(result.length>0){
+            res.json(result)
+        }
+    })
+})
 
 /**
  * API 4.1 获取博客数据
@@ -392,6 +639,84 @@ server.post('/blog/write',function(req,res){
 
 
 
+/**
+ * API 5.1 教师数据
+ */
+server.get('/about-us', function(req, res){
+    let output = {
+        carouselItems: [],
+        teacherItems: [],
+    }
+    let loadedCount = 0    //有几类数据已经加载完成——如果等于2说明二类数据全部加载完成
+
+    //执行数据库查询1：教师轮播广告条目
+    let sql1 = 'SELECT img FROM edu_teacher_carousel'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+         if(loadedCount===2){  //所有的二类数据全部加载完成
+            res.json(output)
+         }
+    })
+    // 执行数据库查询2：教师信息条目
+    let sql2 = 'SELECT tpic From edu_teacher'
+    pool.query(sql2, function(err, result){
+        if(err)throw err
+        output.teacherItems = result
+        loadedCount++
+        if(loadedCount===2){  //所有的二类数据全部加载完成
+            res.json(output)
+        }
+    })
+
+})
+
+/**
+ * API 6.1 获取学生数据
+ */
+server.get('/portfolio', function(req, res){
+    let output = {
+        carouselItems: [],
+        nameItems: [],
+        introductionItems: [],
+
+    }
+    let loadedCount = 0    //有几类数据已经加载完成——如果等于3说明三类数据全部加载完成
+
+    //执行数据库查询1：学生风采轮播条目
+    let sql1 = 'SELECT pic FROM edu_student'
+    pool.query(sql1, function(err, result){
+        if(err)throw err
+        output.carouselItems = result
+        loadedCount++
+         if(loadedCount===3){  //所有的三类数据全部加载完成
+            res.json(output)
+         }
+    })
+    //执行数据库查询2：学生风采姓名条目
+    let sql2 = 'SELECT sname FROM edu_student'
+    pool.query(sql2, function(err, result){
+        if(err)throw err
+        output.nameItems = result
+        loadedCount++
+        if(loadedCount===3){  //所有的三类数据全部加载完成
+            res.json(output)
+        }
+    })
+    //执行数据库查询3：学生风采自我介绍条目
+    let sql3 = 'SELECT details FROM edu_student'
+    pool.query(sql3, function(err, result){
+        if(err)throw err
+        output.introductionItems = result
+        loadedCount++
+        if(loadedCount===3){  //所有的三类数据全部加载完成
+            res.json(output)
+        }
+    })
+
+
+})
 
 
 /**

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>达外 | contact us</title>
+    <title>Contact US | DarkWhite</title>
     
     <!-- core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -29,11 +29,11 @@
             </header><!--/header-->
             
     <section id="contact-info">
-    
+       
     </section> 
 
     <section id="contact-page">
-     
+
     </section>
 
     <section id="bottom">
@@ -66,112 +66,28 @@
     <script src="js/jquery.isotope.min.js"></script>
  
     <script src="js/wow.min.js"></script>
+
        <script src="js/main.js"></script>
-       <script>
-       let html=`   <div class="center">                
-            <h2>如何联系我们</h2>
-            <p class="lead">We are here waiting you</p>
+       <script src="js/contact-us.js"></script>
+       <div id="modalcontactSucc" class="modal fade">   <!--半透明遮罩-->
+        <div class="modal-dialog modal-sm">   <!--对话框尺寸、位置-->
+          <div class="modal-content">   <!--边框、倒角、背景色-->
+            <!-- 头部 -->
+            <div class="modal-header">
+              <h4 class="modal-title">反馈成功</h4>
+            </div>
+            <!-- 主体 -->
+            <div class="modal-body">
+              <p>您的信息我们已经收到，我们会在三个工作日内处理并给予答复！</p>
+            </div>
+            <!-- 尾部 -->
+            <div class="modal-footer">
+              <button class="btn btn-info" type="button" data-dismiss="modal">确定</button>
+            </div>
+          </div>  
         </div>
-        <div class="gmap-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-5 text-center">
-                        <div class="gmap">
-                            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://map.baidu.com/@12583586.77385,2633673.398135,17z"></iframe>
-    
-                        </div>
-                    </div>
-
-                    <div class="col-sm-7 map-content">
-                        <ul class="row">
-                            <li class="col-sm-6">
-                                <address>
-                                    <h5>总公司</h5>
-                                    <p>华南师范大学南海校区<br>
-                                    学生公寓A座</p>
-                                    <p>电话:123-456-78910 <br>
-                                    邮箱:info@edu.cn</p>
-                                </address>
-
-                                <address>
-                                    <h5>2区办公室</h5>
-                                    <p>华南师范大学南海校区<br>
-                                        学生公寓A座</p>
-                                        <p>电话:123-456-78910 <br>
-                                        邮箱:info@edu.cn</p>
-                                </address>
-                            </li>
-
-
-                            <li class="col-sm-6">
-                                <address>
-                                    <h5>3区办公室</h5>
-                                    <p>华南师范大学南海校区<br>
-                                        学生公寓A座</p>
-                                        <p>电话:123-456-78910 <br>
-                                        邮箱:info@edu.cn</p>
-                                </address>
-
-                                <address>
-                                    <h5>3区办公室</h5>
-                                    <p>华南师范大学南海校区<br>
-                                        学生公寓A座</p>
-                                        <p>电话:123-456-78910 <br>
-                                        邮箱:info@edu.cn</p>
-                                </address>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>`
-       
-       $('#contact-info').html(html)
-      let html2=`   <div class="container">
-            <div class="center">        
-                <h2>留下你的联系方式</h2>
-                <p class="lead">contact us to get more information.</p>
-            </div> 
-            <div class="row contact-wrap"> 
-                <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post">
-                    <div class="col-sm-5 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>您的称呼 *</label>
-                            <input type="text" name="name" class="form-control" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label>邮箱 *</label>
-                            <input type="email" name="email" class="form-control" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label>电话</label>
-                            <input type="number" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>学校名称</label>
-                            <input type="text" class="form-control">
-                        </div>                        
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <label>专业 *</label>
-                            <input type="text" name="subject" class="form-control" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label>信息 *</label>
-                            <textarea name="message" id="message" required="required" class="form-control" rows="8"></textarea>
-                        </div>                        
-                        <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">提交留言</button>
-                        </div>
-                    </div>
-                </form> 
-            </div>
-        </div>`
+      </div>
       
-        $('#contact-page').html(html2)
-      
-      </script>
+     
 </body>
 </html>

@@ -153,7 +153,9 @@ $(function() {
           // 清空历史消息
           $('#clear').click(()=> {
             $('#messages').text('');
+            
             socket.emit('disconnect');
+            
           });
        
           // 渲染表情

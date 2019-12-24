@@ -82,7 +82,7 @@ jQuery(function($) {
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎您,${uname} <i class="fa fa-angle-down"></i></a>
 									<ul class="dropdown-menu">
-										<li  class=""><a href="myorders.html">我的订单</a></li>
+										<li><a href="404.html">我的订单</a></li>
 										<li ><a href="cart.html">我的购物车</a></li>
 										<li id="logout"><a>退出登录</a></li>
 									
@@ -315,7 +315,7 @@ $(document).on('click','#logout',function()
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+                        <a class="navbar-brand" href="index.html"><img src="images/logo2.png" alt="logo"></a>
                     </div>
                     
                     <div class="collapse navbar-collapse navbar-right">

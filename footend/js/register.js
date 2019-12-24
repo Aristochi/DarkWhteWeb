@@ -44,37 +44,38 @@
     $('#email').blur(function(){
 
         let email = $(this).val()
-        if(email.length>0)
+      // if(isPoneAvailable(email))
+      // {
+     //进行服务器端验证邮箱
+       $.ajax({
+      method: 'GET',
+      url: 'http://127.0.0.1:5050/user/check/email',
+      data:`email=${email}`,
+    // data:{email:email},
+       success: function(data){  
+        if(data.code==200)
         {
-           //进行服务器端验证邮箱
-          $.ajax({
-            method: 'GET',
-            url: 'http://127.0.0.1:5050/user/check/email',
-            data:`email=${email}`,
-            // data:{email:email},
-            success: function(data){  
-                if(data.code==200)
-                {
-                    $('#emailMsg').html('此邮箱已注册').removeClass('alert-info').addClass('alert-danger')
-                }
-                else
-                {
-                    $('#emailMsg').html('此邮箱可注册').removeClass('alert-danger').addClass('alert-info')
-                }
-               
-            }
-          })
+            $('#emailMsg').html('此邮箱已注册').removeClass('alert-info').addClass('alert-danger')
+        }
+        else
+        {
+            $('#emailMsg').html('此邮箱可注册').removeClass('alert-danger').addClass('alert-info')
         }
        
+      }
+    })
+      }
+    
+
+        
+        
+        
+       
      
-      })
+      )
       $('#phone').blur(function(){
         let phone = $(this).val()
-        if(phone.length<11)
-        {
-          $('#phoneMsg').html('此号码格式错误').removeClass('alert-info').addClass('alert-danger')
-        }
-        if(phone.length==11)
+        if(isPoneAvailable(phone))
         //进行服务器端验证号码
       {
         $.ajax({
@@ -94,9 +95,17 @@
           }
         })
       }
+      else
+      {
+        $('#phoneMsg').html('此号码格式错误').removeClass('alert-info').addClass('alert-danger')
+      }
+
       })
 
 
+
+       
+      
 
 /**为btRegister按钮添加事件监听**/
 $('#btRegister').click(function(){
@@ -123,6 +132,7 @@ $('#btRegister').click(function(){
         if(data.code===200){
           //alert('注册成功')
           $('#modalRegisterSucc').modal()   //弹出模态对话框
+          $('#backindex').click(function(){window.location.href="login.html"})
         }else {
           //alert('注册失败！服务器返回错误消息：' + data.msg)
           $('#serverErrMsg').html(data.msg)
@@ -136,3 +146,25 @@ $('#btRegister').click(function(){
       }
     })
   })
+
+
+  // 验证电话号码
+  function isPoneAvailable (pone) {
+    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(pone)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // 验证邮箱
+  function isEmailAvailable(emailInput) {
+		var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+		if(reg.test(emailInput)){
+		return true;
+		}else{
+			return false;
+		}
+
+ }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart</title>
+    <title>Cart | DarkWhite</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -26,10 +26,11 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <body>
-  <header id="main_header">
+  
+        <header id="main_header">
        
-				
-  </header><!--/header-->
+             
+            </header><!--/header-->
 
 
 
@@ -49,61 +50,36 @@
                           </ol>
                         </nav>
                       </div>
-                      <div id="basket" class="col-lg-9">
+                      <div id="basket" class="col-lg-12">
                         <div class="box">
                           <form method="post" action="checkout1.html">
                             <h1>购物车</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
                             <div class="table-responsive">
                               <table class="table">
                                 <thead>
                                   <tr>
-                                    <th colspan="2">Product</th>
-                                    <th>Quantity</th>
-                                    <th>Unit price</th>
-                                    <th>Discount</th>
-                                    <th colspan="2">Total</th>
+                                    <th><input type="checkbox" name="checkAll" id="checkAll" onclick="SetAll(this)">全选</th>
+                                    <th colspan="2">商品名称</th>
+                                    <th>教师</th>
+                                    <th>原价</th>
+                                    <th colspan="2">实际价格</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td><a href="#"><img src="img/detailsquare.jpg" alt="White Blouse Armani"></a></td>
-                                    <td><a href="#">White Blouse Armani</a></td>
-                                    <td>
-                                      <input type="number" value="2" class="form-control">
-                                    </td>
-                                    <td>$123.00</td>
-                                    <td>$0.00</td>
-                                    <td>$246.00</td>
-                                    <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                  </tr>
-                                  <tr>
-                                    <td><a href="#"><img src="img/basketsquare.jpg" alt="Black Blouse Armani"></a></td>
-                                    <td><a href="#">Black Blouse Armani</a></td>
-                                    <td>
-                                      <input type="number" value="1" class="form-control">
-                                    </td>
-                                    <td>$200.00</td>
-                                    <td>$0.00</td>
-                                    <td>$200.00</td>
-                                    <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                  </tr>
+                                <tbody id="cartlesson">
+                                 
                                 </tbody>
-                                <tfoot>
-                                  <tr>
-                                    <th colspan="5">Total</th>
-                                    <th colspan="2">$446.00</th>
-                                  </tr>
+                                <tfoot id="carttotal">
+                                  
                                 </tfoot>
                               </table>
                             </div>
                             <!-- /.table-responsive-->
                             <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                              <div class="left"><a href="category.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                              <div class="left"><a href="lang.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> 继续购物</a></div>
                               <div class="right">
                                   
-                                <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i>刷新购物车</button>
-                                <button type="submit" class="btn btn-outline-secondary" style="color: white;  background-color: red;">结算<i class="fa fa-chevron-right"></i></button>
+                                <button type="button" class="btn btn-outline-secondary"> <i class="fa fa-refresh"></i><a  style="color: black;" href="cart.html">刷新购物车</a> </button>
+                                <button type="button" class="btn btn-outline-secondary" style="color: white;  background-color: red;"> <a style="color: white;" href="404.html"> 结算</a>   <i class="fa fa-chevron-right"></i> </button>
                           
                               </div>
                             </div>
@@ -111,51 +87,9 @@
                         </div>
                         <!-- /.box-->
                       </div>
-                      <!-- /.col-lg-9-->
-                      <div class="col-lg-3">
-                        <div id="order-summary" class="box">
-                          <div class="box-header">
-                            <h3 class="mb-0">Order summary</h3>
-                          </div>
-                          <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-                          <div class="table-responsive">
-                            <table class="table">
-                              <tbody>
-                                <tr>
-                                  <td>Order subtotal</td>
-                                  <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                  <td>Shipping and handling</td>
-                                  <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                  <td>Tax</td>
-                                  <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                  <td>Total</td>
-                                  <th>$456.00</th>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                        <div class="box">
-                          <div class="box-header">
-                            <h4 class="mb-0">Coupon code</h4>
-                          </div>
-                          <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
-                          <form>
-                            <div class="input-group">
-                              <input type="text" class="form-control"><span class="input-group-append">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
-                            </div>
-                            <!-- /input-group-->
-                          </form>
-                        </div>
+                      
                       </div>
-                      <!-- /.col-md-3-->
+                      <!-- /.col-md-3 -->
                     </div>
                   </div>
                 </div>
@@ -174,7 +108,7 @@
          
       </div>
   </section>
-
+  
   <footer id="footer" class="midnight-blue">
       <div class="container">
           <div class="row">
@@ -199,5 +133,64 @@
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/wow.min.js"></script>
-</body>
-</html>
+    <script>
+      $(window).load(function(){
+        $.ajax({
+          method:'GET',
+          url:'http://127.0.0.1:5050/cart',
+          success:function(data){
+            let htmlcart = ''
+            let total = 0
+            console.log('异步请求成功')
+            for(let i = 0;i<data.length;i++){
+              htmlcart +=`
+              <tr value="${i+1}">
+                <td><input type="checkbox" name="choose" id="" onclick="checkOne()"></td>
+                <td><a href="#"><img style="height:50px; width:50px;" src="${data[i].img}" alt=""></a></td>
+                <td>${data[i].lname}${data[i].lname}${data[i].lname}${data[i].lname}</td>
+                <td><a href="#">${data[i].tname }</a></td>
+                <td>￥${data[i].price}</td>
+                <td>￥${data[i].price}</td>
+                <td><a class="glyphicon glyphicon-trash" onclick=""></a></td>
+              </tr>
+                `
+              total +=data[i].price
+            }
+            $('#cartlesson').html(htmlcart)
+            let htmltotal = ''
+            htmltotal +=`
+            <tr>
+              <th colspan="5">Total</th>
+              <th colspan="2">￥${total}</th>
+            </tr>
+              `
+            $('#carttotal').html(htmltotal)
+          }
+        })
+      })
+    </script>
+    <script>
+      var item = document.getElementsByName("choose");
+      var selectAll = document.getElementsByName("checkAll");
+      function SetAll(obj){
+        for(var i=0;i<item.length;i++){
+          item[i].checked=obj.checked;
+        }
+      }
+      function checkOne(){
+        var num=0;
+			//遍历子选项中选中的个数，如果全选中，就将全选的状态设置为true，有一个未选中全选的状态就为false
+			for(var i=0;i<lis.length;i++){
+				if(item[i].checked){
+					num++;
+				}
+			}
+			if(num==item.length){
+				selectAll.checked=true;
+			}else{
+				selectAll.checked=false;
+      }
+    }
+      </script>
+    </body>
+  </html>
