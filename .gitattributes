@@ -1,8 +1,8 @@
-*.yml linguist-language=javascript
-*.html linguist-language=javascript
-*.js linguist-language=javascript 
-*.xml linguist-language=javascript
-*.css linguist-language=javascript
-*.sql linguist-language=javascript
-*.uml linguist-language=javascript
-*.cmd linguist-language=javascript 
+*.yml linguist-language=JavaScript
+*.html linguist-language=JavaScript
+*.js linguist-language=JavaScript
+*.xml linguist-language=JavaScript
+*.css linguist-language=JavaScript
+*.sql linguist-language=JavaScript
+*.uml linguist-language=JavaScript
+*.cmd linguist-language=JavaScript
