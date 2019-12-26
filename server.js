@@ -166,7 +166,7 @@ server.get('/ai',function(req,res){
 请求方式：GET
 请求示例：http://127.0.0.1:5050/footend/single?lid=2
  */
-server.get('/footend/single',function(req,res){
+server.get('/single',function(req,res){
     let lid = req.url.split('=')[1];
     if(!lid){
         res.json({})
@@ -334,8 +334,7 @@ server.post('/user/login', function(req, res){
         if(result.length>0){
             req.session.uname=n;
             req.session.isLogin=true;
-            console.log("login"+req.session.uname)
-            console.log(cookieParser)
+           
             res.json({code:200, msg:'user login succ'})
             return
         }

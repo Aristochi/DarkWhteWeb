@@ -94,7 +94,7 @@
         let lid = decodeURI(location.href).split('=')[1];
         $.ajax({
             method:'GET',
-            url:'http://127.0.0.1:5050/footend/single?lid='+lid,
+            url:'http://127.0.0.1:5050/single?lid='+lid,
             data:`lid=${lid}`,
             success:function(data){
                 console.log('异步请求成功')
