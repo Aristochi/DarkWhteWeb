@@ -134,15 +134,32 @@
     <script src="js/main.js"></script>
     <script src="js/wow.min.js"></script>
     <script>
+       let lis
       $(window).load(function(){
         $.ajax({
-          method:'GET',
-          url:'http://127.0.0.1:5050/cart',
-          success:function(data){
-            let htmlcart = ''
-            let total = 0
-            console.log('异步请求成功')
-            for(let i = 0;i<data.length;i++){
+        method:'GET',
+        url:'http://127.0.0.1:5050/user/sessiondata',
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
+        success:function(data)
+        {
+            
+            uname=data.uname;
+            isLogin=data.isLogin;
+            if(isLogin)
+            {
+              $.ajax({
+             method:'GET',
+             url:'http://127.0.0.1:5050/cart',
+             data:`uname=${uname}`,
+              success:function(data){
+              let htmlcart = ''
+             let total = 0
+             lis=data.length
+             console.log('异步请求成功')
+             for(let i = 0;i<data.length;i++){
               htmlcart +=`
               <tr value="${i+1}">
                 <td><input type="checkbox" name="choose" id="" onclick="checkOne()"></td>
@@ -167,30 +184,89 @@
             $('#carttotal').html(htmltotal)
           }
         })
+      
+                
+            }
+          },
+        error: function(xhr, err){
+            console.log('异步session失败：')
+            console.log(xhr)
+            console.log(err)
+          }
+          
+        })
       })
-    </script>
-    <script>
-      var item = document.getElementsByName("choose");
-      var selectAll = document.getElementsByName("checkAll");
+        
+    
+
+
+
+
+
+
+     
+    
+   
       function SetAll(obj){
+        var selectAll = document.getElementsByName("checkAll");
+        var item = document.getElementsByName("choose");
         for(var i=0;i<item.length;i++){
           item[i].checked=obj.checked;
         }
       }
       function checkOne(){
+        var selectAll = document.getElementsByName("checkAll");
+        var item = document.getElementsByName("choose");
         var num=0;
 			//遍历子选项中选中的个数，如果全选中，就将全选的状态设置为true，有一个未选中全选的状态就为false
-			for(var i=0;i<lis.length;i++){
-				if(item[i].checked){
-					num++;
-				}
-			}
-			if(num==item.length){
-				selectAll.checked=true;
-			}else{
+			for (var i=0;i<item.length;i++) {
+			if(!item[i].checked)
+			{
 				selectAll.checked=false;
-      }
+				break;
+			}		
+			else
+			{
+				selectAll.checked=true;
+			}
+		}
     }
-      </script>
+
+
+
+
+/***/
+
+function selAll(that)
+	{
+		
+		var sel=document.getElementsByName("sel");
+		for (var i=0;i<sel.length;i++) {
+			sel[i].checked=that.checked;
+		}
+	}
+	
+	
+function sel()
+{
+	var selAll=document.getElementById("selAll");
+	var sel=document.getElementsByName("sel");
+		for (var i=0;i<sel.length;i++) {
+			if(!sel[i].checked)
+			{
+				selAll.checked=false;
+				break;
+			}		
+			else
+			{
+				selAll.checked=true;
+			}
+		}
+}
+
+
+
+
+    </script>
     </body>
   </html>

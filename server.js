@@ -570,17 +570,27 @@ server.post('/single',function(req,res){
  * 接口地址：http://127.0.0.1:5050/cart
 返回格式：JSON
 请求方式：GET
-请求示例：http://127.0.0.1:5050/cart
+请求示例：http://127.0.0.1:5050/cart?uname=?
  */
 server.get('/cart',function(req,res){
-    let sql='SELECT * FROM edu_lesson,edu_cart,edu_teacher WHERE edu_lesson.lid=edu_cart.lesson_id AND edu_teacher.tid=edu_cart.teacher_id'
-    pool.query(sql,function(err,result){
+    let uname=req.url.split('=')[1]
+    let sql='SELECT * FROM edu_lesson,edu_cart,edu_teacher WHERE edu_cart.uname=? AND edu_lesson.lid=edu_cart.lesson_id AND edu_teacher.tid=edu_cart.teacher_id'
+    pool.query(sql,[uname],function(err,result){
         if(err)throw err
         if(result.length>0){
             res.json(result)
         }
     })
 })
+
+/***
+ * 3.4删除购物车项
+ * 接口地址：http://127.0.0.1:5050/cart/item/delete
+返回格式：JSON
+请求方式：GET
+请求示例：http://127.0.0.1:5050/cart/item/delete?iid=2
+
+ */
 
 /**
  * API 4.1 获取博客数据
