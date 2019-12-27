@@ -519,6 +519,34 @@ server.post('/contact',function(req,res){
 })
 
 /**
+ * 3.1搜索
+ * 接口地址:http://127.0.0.1:5050/search
+ * 请求方式：GET
+ * 请求示例：http://127.0.0.1:5050/search?keyword=?
+ */
+server.get('/search',function(req,res){
+    let keyword=req.url.split("=")[1];
+    
+    let sql="SELECT * FROM edu_lesson WHERE CONCAT_WS(' ',lname,teacher_name,synopsis) REGEXP ?"
+    pool.query(sql,[keyword],function(err,result){
+        if (err) throw err
+        if(result.length>0)
+        {
+            res.json(result)
+        }
+        else
+        {
+            res.json({"code":404,"msg":"not thing"})
+        }
+
+    })
+
+
+
+})
+
+
+/**
  * 3.2 添加商品至购物车
  * 接口地址：http://127.0.0.1:5050/single
 返回格式：JSON

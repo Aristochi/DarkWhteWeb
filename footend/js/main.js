@@ -90,8 +90,8 @@ jQuery(function($) {
 								</li>     
 								<li> <div class="search">
 									<form role="form">
-										<input type="text" class="search-form" autocomplete="off" placeholder="Search">
-										<i class="fa fa-search"></i>
+										<input type="text" id="search" class="search-form" autocomplete="off" placeholder="Search">
+										<i id="searchbtn" class="fa fa-search"></i>
 									</form>
 							   </div></li>                   
 							</ul>
@@ -149,8 +149,8 @@ jQuery(function($) {
 								</li>     
 								<li> <div class="search">
 									<form role="form">
-										<input type="text" class="search-form" autocomplete="off" placeholder="Search">
-										<i class="fa fa-search"></i>
+										<input type="text"  id="search"  class="search-form" autocomplete="off" placeholder="Search">
+										<i  id="searchbtn" class="fa fa-search"></i>
 									</form>
 							   </div></li>                   
 							</ul>
@@ -193,6 +193,8 @@ jQuery(function($) {
 
 	});
 
+
+	
 	// Contact form
 	var form = $('#main-contact-form');
 	form.submit(function(event){
@@ -290,7 +292,15 @@ jQuery(function($) {
 
 
 $('#bottom2').html(html4)
+
+$(document).on('click','#searchbtn',function(){
+	let keyword=$('#search').val()
+	window.location.href="search.html?keyword="+keyword
 	
+
+
+})
+
 $(document).on('click','#logout',function()
 {
     $.ajax({
@@ -352,8 +362,8 @@ $(document).on('click','#logout',function()
                             </li>     
                             <li> <div class="search">
                                 <form role="form">
-                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                                    <i class="fa fa-search"></i>
+                                    <input type="text"  id="search"  class="search-form" autocomplete="off" placeholder="Search">
+                                    <i  id="searchbtn" class="fa fa-search"></i>
                                 </form>
                            </div></li>                   
                         </ul>
