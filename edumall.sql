@@ -66,11 +66,12 @@ INSERT INTO `edu_blog` (`bid`, `uid`, `uname`, `title`, `pic`, `details`, `abstr
 
 DROP TABLE IF EXISTS `edu_cart`;
 CREATE TABLE IF NOT EXISTS `edu_cart` (
-  `cid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
   `uname` varchar(32) DEFAULT NULL,
   `lesson_id` int(11) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
-  `price` int(11) NOT NULL
+  `price` int(11) NOT NULL ,
+   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -78,11 +79,11 @@ CREATE TABLE IF NOT EXISTS `edu_cart` (
 --
 
 INSERT INTO `edu_cart` (`cid`, `uname`, `lesson_id`, `teacher_id`, `price`) VALUES
-(0, '1', 9, 1, 999),
-(0, 'zbt', 1, 1, 999),
-(0, 'zbt', 1, 1, 999),
-(0, 'zbt', 1, 1, 999),
-(0, 'zbt', 1, 1, 999);
+(, '1', 9, 1, 999),
+(, 'zbt', 1, 1, 999),
+(, 'zbt', 1, 1, 999),
+(, 'zbt', 1, 1, 999),
+(, 'zbt', 1, 1, 999);
 
 -- --------------------------------------------------------
 

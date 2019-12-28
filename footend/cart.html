@@ -135,6 +135,7 @@
     <script src="js/wow.min.js"></script>
     <script>
        let lis
+       let Adata
       $(window).load(function(){
         $.ajax({
         method:'GET',
@@ -155,20 +156,21 @@
              url:'http://127.0.0.1:5050/cart',
              data:`uname=${uname}`,
               success:function(data){
+                Adata=data
               let htmlcart = ''
              let total = 0
              lis=data.length
              console.log('异步请求成功')
              for(let i = 0;i<data.length;i++){
               htmlcart +=`
-              <tr value="${i+1}">
+              <tr id="${i}" value="${i+1}">
                 <td><input type="checkbox" name="choose" id="" onclick="checkOne()"></td>
                 <td><a href="#"><img style="height:50px; width:50px;" src="${data[i].img}" alt=""></a></td>
                 <td>${data[i].lname}${data[i].lname}${data[i].lname}${data[i].lname}</td>
                 <td><a href="#">${data[i].tname }</a></td>
                 <td>￥${data[i].price}</td>
                 <td>￥${data[i].price}</td>
-                <td><a class="glyphicon glyphicon-trash" onclick=""></a></td>
+                <td><a id="del_${data[i].cid}" class="glyphicon glyphicon-trash" onclick="del(this)"></a></td>
               </tr>
                 `
               total +=data[i].price
@@ -185,7 +187,7 @@
           }
         })
       
-                
+      
             }
           },
         error: function(xhr, err){
@@ -203,10 +205,32 @@
 
 
 
+      del=function(obj)
+      {
+        var parentTr=obj.parentNode.parentNode;
+        var parentTable = parentTr.parentNode;
+        var id =$(obj).attr('id');
+        
+  
+        let iid=id.split('_')[1];
+        $.ajax({
+          method:"GET",
+          url:"http://127.0.0.1:5050/cart/item/delete",
+          data:`iid=${iid}`,
+          success:function(data)
+          {
 
+          }
+
+
+
+        })
+
+        parentTable.removeChild(parentTr);
+      }
      
     
-   
+  
       function SetAll(obj){
         var selectAll = document.getElementsByName("checkAll");
         var item = document.getElementsByName("choose");
@@ -237,32 +261,6 @@
 
 /***/
 
-function selAll(that)
-	{
-		
-		var sel=document.getElementsByName("sel");
-		for (var i=0;i<sel.length;i++) {
-			sel[i].checked=that.checked;
-		}
-	}
-	
-	
-function sel()
-{
-	var selAll=document.getElementById("selAll");
-	var sel=document.getElementsByName("sel");
-		for (var i=0;i<sel.length;i++) {
-			if(!sel[i].checked)
-			{
-				selAll.checked=false;
-				break;
-			}		
-			else
-			{
-				selAll.checked=true;
-			}
-		}
-}
 
 
 

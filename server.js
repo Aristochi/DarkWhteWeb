@@ -589,8 +589,18 @@ server.get('/cart',function(req,res){
 返回格式：JSON
 请求方式：GET
 请求示例：http://127.0.0.1:5050/cart/item/delete?iid=2
-
  */
+
+ server.get('/cart/item/delete',function(req,res){
+     let iid=req.url.split('=')[1]
+     let sql="DELETE FROM edu_cart WHERE cid=?"
+     pool.query(sql,[iid],function(err,result){
+        if(err)throw err
+
+        res.json({"code":200,"msg":"deletesucc"})
+
+     })
+ })
 
 /**
  * API 4.1 获取博客数据
